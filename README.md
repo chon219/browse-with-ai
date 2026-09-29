@@ -4,6 +4,10 @@ A Chrome extension that turns natural-language requests into browser actions. Re
 
 BWAI runs in the extension using LangChain and LangGraph, with an OpenAI-compatible model API of your choice.
 
+![BWAI browser research demo showing visited pages, page actions, and a comparison with source links](docs/images/browser-research.png)
+
+*Example workflow shown with sample product data.*
+
 ## Get started
 
 Build with Node.js 22+ and npm, then load the extension in Chrome 120+.
