@@ -1,5 +1,5 @@
 {
   "extName": { "message": "BWAI — Browse With AI" },
-  "extDescription": { "message": "Operate your browser in natural language. Browse, find, fill in, and organize on its own, with every submission confirmed step by step. No server required." },
+  "extDescription": { "message": "Browse, research, fill forms, and create documents with an AI assistant that understands natural language." },
   "actionTitle": { "message": "Open BWAI" }
 }
