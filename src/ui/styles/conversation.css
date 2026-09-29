@@ -1,0 +1,104 @@
+.card.conversation-card,.panel .card.conversation-card{padding:0;overflow:hidden;flex:1;min-height:0;display:flex;flex-direction:column}
+.conversation-scroll{flex:1;min-height:0;position:relative;display:flex}
+.conversation-log{flex:1;min-width:0;min-height:0;overflow:auto;overscroll-behavior:contain;padding:24px;display:flex;flex-direction:column;gap:16px;scrollbar-gutter:stable}
+.latest-messages{position:absolute;bottom:12px;left:50%;transform:translateX(-50%);box-shadow:var(--shadow);font-size:12px;white-space:nowrap;padding:7px 12px}
+.conversation-actions{display:flex;flex-wrap:wrap;align-items:center;gap:8px;flex-shrink:0;padding-bottom:4px}
+.conversation-actions .skill-controls{display:contents}
+.conversation-actions>button{font-size:12px}
+.chat-message{max-width:92%;padding:14px 18px;border-radius:13px;overflow-wrap:anywhere;flex-shrink:0}
+.chat-message.user{align-self:flex-end;background:var(--accent-soft);color:var(--accent-soft-text)}
+.chat-message.user p{margin:0;white-space:pre-wrap;font-size:14px;line-height:1.8}
+.chat-message.assistant{align-self:flex-start;background:var(--surface-2);border:1px solid var(--border)}
+.chat-message.assistant.result{background:var(--surface);border:0;padding:8px 4px;max-width:100%}
+.chat-message.assistant.error{background:var(--warn-bg);border-color:var(--warn-border);color:var(--warn-text)}
+.chat-message h3{font-size:15px;margin:0 0 10px}
+.chat-message .markdown>:first-child{margin-top:0}
+.chat-message .markdown>:last-child{margin-bottom:0}
+.result-outcome{align-self:flex-start;font-size:12px;font-weight:600;margin:0 0 -10px 4px;color:var(--ok-text)}
+.result-outcome.incomplete{color:var(--warn-text)}
+.chat-activity{font-size:12px;color:var(--text-subtle);padding:0 10px;flex-shrink:0}
+.chat-activity summary{cursor:pointer}
+.chat-activity ol{list-style:none;padding:10px 0 0;margin:0}
+.chat-activity li{display:flex;gap:12px;margin:5px 0}
+.chat-activity time{white-space:nowrap}
+.chat-activity li>span,.code-run{min-width:0;flex:1}
+.code-run summary{cursor:pointer;color:var(--accent)}
+.code-run summary.failed{color:var(--warn-text)}
+.code-run h4{font-size:12px;margin:10px 0 4px;color:var(--text-muted)}
+.code-run pre{margin:0;padding:8px 10px;max-height:240px;overflow:auto;background:var(--surface-2);border:1px solid var(--border);border-radius:6px;white-space:pre-wrap;overflow-wrap:anywhere;font:12px/1.5 ui-monospace,Consolas,"Microsoft YaHei",monospace;color:var(--text)}
+.code-run pre.error{color:var(--warn-text);background:var(--warn-bg);border-color:var(--warn-border)}
+.code-run p{margin:0;overflow-wrap:anywhere}
+.chat-message.approval{background:var(--approval-bg);border-color:var(--warn-border)}
+.chat-message.approval h3{margin-top:0}
+.chat-message.approval p{font-size:13px}
+.approval-reason{font-size:13px;overflow-wrap:anywhere}
+.approval-url{font-size:12px;overflow-wrap:anywhere;color:var(--warn-text)}
+.approval dl{display:grid;grid-template-columns:minmax(80px,1fr) minmax(0,3fr);font-size:13px;gap:9px;margin:16px 0}
+.approval dt{color:var(--text-muted)}
+.approval dd{margin:0;white-space:pre-wrap;overflow-wrap:anywhere}
+.decision-status{font-size:12px;color:var(--text-subtle)}
+
+.chat-composer{flex:none;max-height:50%;overflow:auto;padding:16px 22px;border-top:1px solid var(--border);background:var(--surface-2)}
+.chat-composer textarea{background:var(--surface);margin:0 0 12px;min-height:76px;max-height:160px;font-size:14px}
+.chat-composer .buttons{justify-content:flex-end}
+.chat-composer.inline{display:flex;gap:10px;align-items:flex-end}
+.chat-composer.inline textarea{flex:1;min-width:120px;margin:0;min-height:48px}
+.chat-composer.inline .buttons{flex:none}
+.composer-hint{margin:8px 0 0;text-align:right}
+
+/* Keep the welcome and input together, without stretching the welcome to fill the screen. */
+.card.conversation-card.draft-thread,.panel .card.conversation-card.draft-thread{flex:0 1 auto;max-height:100%;margin-top:auto}
+.draft-thread .chat-composer{flex:0 1 auto;min-height:150px;max-height:none;background:var(--surface-2)}
+.draft-welcome{flex:0 1 auto;min-height:0;overflow:auto;display:flex;flex-direction:column;padding:18px 22px}
+.draft-welcome h2{font-size:20px;margin:0 0 6px}
+.draft-welcome p{font-size:13px;color:var(--text-muted);margin:0 0 12px;max-width:480px}
+.page-context{display:flex;align-items:flex-start;gap:6px;margin:0 0 10px;color:var(--text-muted);font-size:12px;overflow-wrap:anywhere}
+.page-context svg{width:15px;height:15px;flex:none;margin-top:2px}
+.page-context span{min-width:0}
+.page-context small{display:block;color:var(--text-subtle);font-size:11px}
+.composer-tools{display:flex;align-items:center;gap:6px;flex-wrap:wrap;flex:1;min-width:0}
+/* Small pill buttons below the message box: attaching a page or files. The page chip shows the page's title once attached. */
+.chip{display:inline-flex;align-items:center;gap:5px;max-width:260px;cursor:pointer;font-size:12px;font-weight:400;padding:5px 10px;border:1px dashed var(--border-strong);border-radius:16px;background:transparent;color:var(--text-muted)}
+.chip:hover{background:var(--surface-3)}
+.chip svg{width:14px;height:14px;flex:none}
+.attach-page span{overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.attach-page.attached{border-style:solid;background:var(--accent-soft);color:var(--accent-soft-text)}
+.attach-page[aria-expanded=true]{background:var(--surface-3)}
+.attach-menu{display:flex;gap:10px;align-items:flex-end;flex-wrap:wrap;margin:10px 0 0}
+.attach-menu label{flex:1;min-width:180px;margin:0}
+.attach-menu button{white-space:nowrap;margin-bottom:3px}
+.detach-page{padding:2px 7px;font-size:15px;line-height:1}
+.file-chip{display:inline-flex;align-items:center;gap:5px;max-width:260px;font-size:12px;padding:1px 2px 1px 10px;border-radius:16px;background:var(--accent-soft);color:var(--accent-soft-text)}
+.file-chip>span{overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.file-chip small{flex:none;opacity:.75}
+.file-chip img,.file-chip>svg{width:18px;height:18px;flex:none;border-radius:4px;object-fit:cover}
+.file-chip:has(img){padding-left:4px}
+.file-chip button{padding:2px 7px;font-size:14px;line-height:1;color:inherit}
+.chat-composer.inline{flex-wrap:wrap}
+.composer-files{flex-basis:100%;display:flex;gap:6px;flex-wrap:wrap}
+.draft-thread .composer-files{margin-top:10px}
+/* Align the first row of tools with Send; extra tools wrap beneath it. */
+.draft-thread .composer-actions{align-items:flex-start}
+.draft-thread .composer-tools{padding-top:7px}
+.chat-composer .buttons .attach-files svg{width:18px;height:18px}
+.message-files{list-style:none;margin:8px 0 0;padding:0;display:flex;gap:6px;flex-wrap:wrap}
+.message-files li{display:inline-flex;align-items:center;gap:5px;max-width:100%;font-size:12px;padding:2px 8px;border-radius:12px;background:var(--surface);color:var(--text-muted)}
+.message-files svg{width:12px;height:12px;flex:none}
+.message-files li>span{overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.message-files small{flex:none;opacity:.75}
+.message-files img{width:48px;height:48px;object-fit:cover;border-radius:6px;flex:none}
+.message-files li:has(img){padding:4px 8px 4px 4px}
+.composer-actions{display:flex;align-items:center;justify-content:space-between;gap:14px;flex-wrap:wrap}
+.suggested-tasks{display:flex;gap:8px;flex-wrap:wrap}
+.suggested-tasks button{display:flex;align-items:center;gap:20px;font-size:13px;font-weight:400;padding:10px 14px;border:1px solid var(--border);background:var(--surface);color:var(--text);border-radius:10px}
+.suggested-tasks button span{color:var(--text-subtle)}
+.suggested-tasks button:hover{background:var(--surface-3)}
+
+/* Side panel: the conversation takes the remaining height and scrolls on its own. */
+.panel .conversation-log{padding:12px;gap:12px}
+.panel .chat-message{max-width:100%;padding:10px 12px}
+.panel .chat-composer{padding:10px}
+.panel .draft-welcome{padding:14px}
+.panel .draft-welcome h2{font-size:18px}
+.panel .draft-welcome p{margin-bottom:12px}
+.panel .suggested-tasks button{font-size:12px;gap:10px;padding:8px 10px}

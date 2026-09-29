@@ -1,0 +1,5 @@
+{
+  "extName": { "message": "BWAI — Browse With AI" },
+  "extDescription": { "message": "用自然语言操作浏览器。自主浏览、查找、填写和整理，提交类操作逐次确认，无需部署服务器。" },
+  "actionTitle": { "message": "打开 BWAI" }
+}

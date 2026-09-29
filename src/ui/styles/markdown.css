@@ -1,0 +1,16 @@
+.markdown{font-size:14px;line-height:1.85;color:var(--text);overflow-wrap:anywhere}
+.markdown h1{font-size:23px;line-height:1.5;margin:24px 0 16px}
+.markdown h2{font-size:17px;margin:24px 0 12px}
+.markdown h3{font-size:15px;margin:20px 0 10px}
+.markdown p{margin:12px 0}
+.markdown ul,.markdown ol{padding-left:22px}
+.markdown li{margin:8px 0}
+.markdown a{color:var(--accent);text-underline-offset:3px}
+.markdown blockquote{border-left:3px solid var(--border-strong);margin:12px 0;padding:4px 15px;color:var(--text-muted);background:var(--surface-2)}
+.markdown blockquote p{margin:4px 0}
+.markdown table{display:block;overflow:auto;border-collapse:collapse;width:100%;font-size:12px;margin:18px 0}
+.markdown th,.markdown td{padding:8px 12px;border:1px solid var(--border);text-align:left}
+.markdown th{background:var(--surface-3)}
+.markdown pre{overflow:auto;padding:15px;background:var(--surface-2);border-radius:8px}
+.markdown code{font-size:12px}
+.markdown hr{border:0;border-top:1px solid var(--border);margin:24px 0}

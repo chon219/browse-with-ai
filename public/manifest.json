@@ -1,0 +1,16 @@
+{
+  "manifest_version": 3, "name": "__MSG_extName__", "version": "0.6.0",
+  "description": "__MSG_extDescription__", "default_locale": "en",
+  "minimum_chrome_version": "120",
+  "permissions": ["storage", "scripting", "sidePanel", "tabs", "tabGroups", "search"],
+  "optional_host_permissions": ["https://*/*", "http://*/*", "file:///*"],
+  "background": { "service_worker": "background.js", "type": "module" },
+  "action": { "default_title": "__MSG_actionTitle__" },
+  "side_panel": { "default_path": "sidepanel.html" },
+  "options_ui": { "page": "settings.html", "open_in_tab": true },
+  "sandbox": { "pages": ["sandbox.html"] },
+  "content_security_policy": {
+    "extension_pages": "script-src 'self'; object-src 'none'; base-uri 'none'",
+    "sandbox": "sandbox allow-scripts; default-src 'none'; script-src 'self' 'unsafe-eval' blob:; worker-src blob:; connect-src 'none'; base-uri 'none'; form-action 'none'"
+  }
+}
