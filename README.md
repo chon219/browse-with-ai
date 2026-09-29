@@ -56,3 +56,7 @@ npm run test:e2e
 ```
 
 See the [development guide](docs/development.md), [architecture](docs/architecture.md), and [DOM snapshot design](docs/dom-snapshot.md).
+
+## License
+
+[MIT](LICENSE) © 2026 Chon.

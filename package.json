@@ -1,6 +1,7 @@
 {
   "name": "browse-with-ai",
   "version": "0.6.0",
+  "license": "MIT",
   "private": true,
   "engines": {
     "node": ">=22"
