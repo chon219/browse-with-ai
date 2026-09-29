@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useEffect, useMemo, useRef, useState } from 'react';
 import Markdown from 'react-markdown';
 import remarkGfm from 'remark-gfm';
 import { conversationMessages, messageText } from '../../shared/conversation';
@@ -7,6 +7,8 @@ import type { ConversationMessage, Task } from '../../shared/types';
 import '../styles/conversation.css';
 import { MessageFiles } from './AttachFiles';
 import { SkillLibrary } from './SkillLibrary';
+import type { WorkspaceFile } from '../../shared/workspace';
+import { remarkWorkspaceLinks, workspaceHref, workspaceLinkResolver } from '../workspace-links';
 
 /** A code run in the activity log: what the agent ran and what came back. */
 function CodeRunDetails({ label, run }: { label: string; run: NonNullable<ConversationMessage['code']> }) {
@@ -25,8 +27,11 @@ interface Props {
   onApproval: (decision: 'approved' | 'rejected') => void;
   onViewPage: (tabId: number) => void;
   onExport: () => void;
+  files: WorkspaceFile[]; onPreviewFile: (path: string) => void;
 }
-export function ChatThread({ task, busy, onApproval, onViewPage, onExport }: Props) {
+export function ChatThread({ task, busy, onApproval, onViewPage, onExport, files, onPreviewFile }: Props) {
+  const resolveFile = useMemo(() => workspaceLinkResolver(files.map(file => file.path)), [files]);
+  const fileLinks = useMemo(() => remarkWorkspaceLinks(resolveFile), [resolveFile]);
   const log = useRef<HTMLDivElement>(null); const following = useRef(true);
   const [showLatest, setShowLatest] = useState(false);
   const [hasNewMessages, setHasNewMessages] = useState(false);
@@ -77,7 +82,13 @@ export function ChatThread({ task, busy, onApproval, onViewPage, onExport }: Pro
       // The outcome sits outside the bubble so the reply text stays exactly what the agent wrote.
       const outcome = message.kind === 'result' && message.outcome && <p className={`result-outcome ${message.outcome}`}>{message.outcome === 'success' ? `✓ ${t('status.completed')}` : t('status.incomplete')}</p>;
       return <React.Fragment key={message.id}>{outcome}<div className={`chat-message ${message.role} ${message.kind}`} aria-label={t(message.role === 'user' ? 'chat.yourMessage' : 'chat.bwaiMessage')} data-testid={message.kind === 'result' ? 'task-result' : `chat-${message.kind}`}>
-        {message.role === 'user' ? <><p>{messageText(message)}</p>{!!message.attachments?.length && <MessageFiles taskId={task.id} files={message.attachments}/>}</> : <div className="markdown"><Markdown remarkPlugins={[remarkGfm]} skipHtml disallowedElements={['img']} urlTransform={url => known.has(url) ? url : ''} components={{ a: ({ href, children }) => href ? <a href={href} target="_blank" rel="noreferrer">{children}</a> : <span>{children}</span> }}>{messageText(message)}</Markdown></div>}
+        {message.role === 'user' ? <><p>{messageText(message)}</p>{!!message.attachments?.length && <MessageFiles taskId={task.id} files={message.attachments}/>}</> : <div className="markdown"><Markdown remarkPlugins={[remarkGfm, fileLinks]} skipHtml disallowedElements={['img']}
+          urlTransform={url => { const path = resolveFile(url); return path ? workspaceHref(path) : known.has(url) ? url : ''; }}
+          components={{ a: ({ href, children }) => {
+            const path = href && resolveFile(href);
+            return path ? <button type="button" className="workspace-link" title={t('app.previewFile', { path })} onClick={() => onPreviewFile(path)}>{children}</button>
+              : href ? <a href={href} target="_blank" rel="noreferrer">{children}</a> : <span>{children}</span>;
+          } }}>{messageText(message)}</Markdown></div>}
       </div></React.Fragment>;
     })}
     <div className="conversation-actions">

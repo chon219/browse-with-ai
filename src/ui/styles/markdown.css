@@ -6,6 +6,8 @@
 .markdown ul,.markdown ol{padding-left:22px}
 .markdown li{margin:8px 0}
 .markdown a{color:var(--accent);text-underline-offset:3px}
+.markdown .workspace-link{display:inline;padding:0;border:0;border-radius:2px;background:none;color:var(--accent);font:inherit;text-align:inherit;vertical-align:baseline;text-decoration:underline;text-underline-offset:3px;overflow-wrap:anywhere}
+.markdown .workspace-link:hover{color:var(--accent-hover)}
 .markdown blockquote{border-left:3px solid var(--border-strong);margin:12px 0;padding:4px 15px;color:var(--text-muted);background:var(--surface-2)}
 .markdown blockquote p{margin:4px 0}
 .markdown table{display:block;overflow:auto;border-collapse:collapse;width:100%;font-size:12px;margin:18px 0}

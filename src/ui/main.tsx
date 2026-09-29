@@ -60,7 +60,7 @@ function App() {
   const openSettings = isRunner ? () => void guard(() => chrome.runtime.openOptionsPage())
     : () => { setHistoryOpen(false); setSettingsMounted(true); setSettingsOpen(open => !open); };
   function renderTask(task: Task) {
-    return <TaskView task={task} busy={busy} isRunner={isRunner}
+    return <TaskView key={task.id} task={task} busy={busy} isRunner={isRunner}
       instruction={instruction} onInstruction={setInstruction} onSend={guarded(() => sendMessage(task))}
       onOpenRunner={guarded(() => openRunner(task.id))}
       onStart={guarded(() => control(task, 'start'))} onPause={guarded(() => control(task, 'pause'))} onCancel={guarded(() => control(task, 'cancel'))}

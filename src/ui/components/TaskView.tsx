@@ -1,5 +1,9 @@
+import { useState } from 'react';
 import { ChatThread } from './ChatThread';
 import { WorkspaceFiles } from './WorkspaceFiles';
+import { WorkspacePreview } from './WorkspacePreview';
+import { useWorkspaceFiles } from '../use-workspace-files';
+import type { ResourceFile } from '../page-resources';
 import { AttachButton, FileChips } from './AttachFiles';
 import { pastedFiles, type Attachment } from '../attachments';
 import { formatTokens, needsSettings, submitOnEnter, taskStatusLabel } from '../helpers';
@@ -27,6 +31,8 @@ interface Props {
 }
 export function TaskView(props: Props) {
   const { task, busy, instruction } = props;
+  const workspaceFiles = useWorkspaceFiles(task.id);
+  const [previewFile, setPreviewFile] = useState<ResourceFile>();
   const canStart = !isFinished(task.status) && (task.status === 'paused' || !task.pendingApproval && !task.pendingQuestion);
   const settingsFirst = needsSettings(task);
   const send = () => { if (instruction.trim() && !busy) props.onSend(); };
@@ -48,13 +54,14 @@ export function TaskView(props: Props) {
       {task.status === 'running' && <p className="task-progress" role="status" data-testid="task-progress"><strong>{t('app.currentProgress')}</strong> {progress ? messageText(progress) : t('step.deciding')}</p>}
       {task.pause && task.status === 'paused' && <p className="task-note">{t(task.pause.kind === 'tokens' ? 'pause.tokens' : 'pause.stalled')}</p>}
       <div className="task-toolbar">
-        <WorkspaceFiles key={task.id} task={task}/>
+        <WorkspaceFiles task={task} files={workspaceFiles} onPreview={setPreviewFile}/>
       </div>
       {task.status === 'running' && <p className="hint">{t(props.isRunner ? 'app.closingPauses' : 'app.runsInTaskPage')}</p>}
       {task.skill && <p className="hint">{t('skills.selected', { name: task.skill.name, version: task.skill.version })}</p>}
     </section>
     <section className="card conversation-card">
-      <ChatThread task={task} busy={busy} onApproval={props.onApproval} onViewPage={props.onViewPage} onExport={props.onExport}/>
+      <ChatThread task={task} busy={busy} onApproval={props.onApproval} onViewPage={props.onViewPage} onExport={props.onExport}
+        files={workspaceFiles} onPreviewFile={path => setPreviewFile(workspaceFiles.find(file => file.path === path))}/>
       <form className="chat-composer inline" onSubmit={event => { event.preventDefault(); send(); }}>
         {!!props.files.length && <div className="composer-files"><FileChips files={props.files} onRemove={props.onRemoveFile}/></div>}
         <textarea id="instruction" aria-label={t(task.pendingQuestion ? 'app.answer' : 'app.message')} placeholder={t(task.pendingQuestion ? 'app.answerPlaceholder' : 'app.followupPlaceholder')} rows={2} maxLength={MESSAGE_CHARS} value={instruction}
@@ -62,5 +69,6 @@ export function TaskView(props: Props) {
         <div className="buttons"><AttachButton compact onAdd={props.onAddFiles}/><button disabled={!instruction.trim() || busy} type="submit">{t(task.pendingQuestion ? 'app.answerAndContinue' : 'app.send')}</button></div>
       </form>
     </section>
+    <WorkspacePreview taskId={task.id} file={previewFile} onClose={() => setPreviewFile(undefined)}/>
   </>;
 }
