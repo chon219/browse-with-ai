@@ -38,13 +38,22 @@ test('the side panel opens settings in place, keeps a draft when going back, and
   } finally { await h.context.close(); }
 });
 
-test('debug defaults on, exports internal details, persists across reloads and can be disabled and cleared', async () => {
+test('debug defaults off, can be enabled, exports internal details and can be disabled and cleared', async () => {
   const h = await harness();
   try {
     await start(h.page, '查找浏览器操作指南，打开页面并查看下一页');
     await expect(h.page.getByTestId('task-status')).toHaveText('已完成', { timeout: 60_000 });
     const settings = await h.context.newPage(); await settings.goto(`chrome-extension://${h.id}/settings.html`);
+    await expect(settings.getByLabel('开启 Debug 日志')).not.toBeChecked();
+    expect(await settings.evaluate(async () => (await indexedDB.databases()).some(db => db.name === 'bwai-debug'))).toBe(false);
+    await settings.getByLabel('开启 Debug 日志').check();
+    await settings.getByRole('button', { name: '保存设置', exact: true }).click();
+    await expect(settings.getByRole('status')).toContainText('设置已保存');
+    await settings.reload();
     await expect(settings.getByLabel('开启 Debug 日志')).toBeChecked();
+    await h.page.locator('.new-conversation-button').click();
+    await start(h.page, '查找浏览器操作指南并记录调试日志');
+    await expect(h.page.getByTestId('task-status')).toHaveText('已完成', { timeout: 60_000 });
     const records = () => settings.evaluate(() => new Promise<{ event: string; taskId: string; runId: string }[]>((resolve, reject) => {
       const open = indexedDB.open('bwai-debug', 1);
       open.onerror = () => reject(open.error);
@@ -71,6 +80,7 @@ test('debug defaults on, exports internal details, persists across reloads and c
     await settings.reload(); await expect(settings.getByLabel('开启 Debug 日志')).not.toBeChecked();
     await settings.getByRole('button', { name: '清空调试日志' }).click();
     await expect.poll(async () => (await records()).length).toBe(0);
+    await h.page.locator('.new-conversation-button').click();
     await start(h.page, '再次查找浏览器操作指南');
     await expect(h.page.getByTestId('task-status')).toHaveText('已完成', { timeout: 60_000 });
     expect(await records()).toEqual([]);

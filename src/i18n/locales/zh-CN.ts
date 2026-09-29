@@ -174,7 +174,7 @@ export const zhCN = {
   'settings.tabs': '标签页',
   'settings.debug': '调试日志',
   'settings.debugEnabled': '开启 Debug 日志',
-  'settings.debugHint': '默认开启，保存后在下一次启动或恢复任务时生效。记录模型输入输出、工具调用、节点状态和异常，保存在本机并保留最近 500 条；超长内容会截断，图片二进制和 API Key 不记录。日志可能包含对话和网页内容。',
+  'settings.debugHint': '默认关闭，保存后在下一次启动或恢复任务时生效。记录模型输入输出、工具调用、节点状态和异常，保存在本机并保留最近 500 条；超长内容会截断，图片二进制和 API Key 不记录。日志可能包含对话和网页内容。',
   'settings.debugExport': '导出调试日志',
   'settings.debugClear': '清空调试日志',
   'settings.debugCleared': '调试日志已清空；运行中的任务仍可写入新日志。',

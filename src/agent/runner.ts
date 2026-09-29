@@ -44,7 +44,7 @@ export async function runTask(taskId: string): Promise<boolean> {
     try {
       const config = await loadConfig();
       task.tokenLimit = normalizeTokenLimit(config.tokenLimit);
-      debug = createDebugSink(taskId, turn, config.debug !== false, config.apiKey);
+      debug = createDebugSink(taskId, turn, config.debug === true, config.apiKey);
       await debugEvent(debug, 'runner.start', { status: task.status, threadId: threadId(task), tokenLimit: task.tokenLimit, model: config.model });
       if (!config.apiKey || !config.model) throw new LocalizedError('runner.configureFirst');
       if ((await update({ status: 'running', error: undefined, pause: undefined, tokenLimit: task.tokenLimit }, msg(task.status === 'ready' ? 'runner.started' : 'runner.resumed'), live => live.status === task.status)).status !== 'running') return true;

@@ -174,7 +174,7 @@ export const en: Catalog = {
   'settings.tabs': 'Tabs',
   'settings.debug': 'Debug logs',
   'settings.debugEnabled': 'Enable Debug logs',
-  'settings.debugHint': 'On by default. Saved changes apply when a task next starts or resumes. Records model input/output, tool calls, node state and errors locally, keeping the latest 500 entries. Long data is truncated; image bytes and the API key are omitted. Logs may contain conversations and page content.',
+  'settings.debugHint': 'Off by default. Saved changes apply when a task next starts or resumes. Records model input/output, tool calls, node state and errors locally, keeping the latest 500 entries. Long data is truncated; image bytes and the API key are omitted. Logs may contain conversations and page content.',
   'settings.debugExport': 'Export debug logs',
   'settings.debugClear': 'Clear debug logs',
   'settings.debugCleared': 'Debug logs cleared; running tasks can still write new entries.',

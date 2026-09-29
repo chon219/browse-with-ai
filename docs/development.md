@@ -45,6 +45,6 @@ npx playwright test -g 'live public website'
 
 ## Debugging
 
-Enable **Settings → Debug logs** to record model requests, tool results, and execution events. Inspect `[BWAI debug]` entries in the task page console, or export and clear logs from settings.
+Debug logs are off by default. Enable **Settings → Debug logs** to record model requests, tool results, and execution events. Inspect `[BWAI debug]` entries in the task page console, or export and clear logs from settings.
 
 For an end-to-end manual check, configure a model, attach a page, complete a task, review an action confirmation, and download its output.

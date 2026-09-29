@@ -7,13 +7,15 @@ import { loadConfig, storeConfig } from '../../src/storage/settings';
 beforeEach(async () => { await clearDebug(); vi.spyOn(console, 'debug').mockImplementation(() => {}); });
 
 describe('debug diagnostics', () => {
-  it('defaults to on for new and existing settings and preserves a saved off switch', async () => {
+  it('defaults to off for new and existing settings and preserves explicit choices', async () => {
     let settings: Record<string, unknown> = { ...initialSettings }; delete settings.debug;
     vi.stubGlobal('chrome', { storage: {
       local: { get: async () => ({ settings }), set: async (value: { settings?: Record<string, unknown> }) => { if (value.settings) settings = value.settings; }, remove: async () => {} },
       session: { get: async () => ({ apiKey: 'test-key' }), set: async () => {}, remove: async () => {} },
     } });
-    expect(initialSettings.debug).toBe(true);
+    expect(initialSettings.debug).toBe(false);
+    expect((await loadConfig()).debug).toBe(false);
+    await storeConfig({ ...await loadConfig(), debug: true });
     expect((await loadConfig()).debug).toBe(true);
     await storeConfig({ ...await loadConfig(), debug: false });
     expect((await loadConfig()).debug).toBe(false);

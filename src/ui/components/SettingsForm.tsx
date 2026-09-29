@@ -27,7 +27,7 @@ const withTokenLimit = (config: ModelConfig, text: string): ModelConfig => confi
 /** The form in a canonical shape, so equal settings compare equal whatever their key order or defaults. */
 function formState(config: ModelConfig, parameterText: string, extensionText: string) {
   const policy = normalizeWebPolicy(config.webPolicy);
-  return JSON.stringify([config.baseUrl, config.model, config.apiKey, config.remember, config.search, config.closeAgentTabs === true, config.visionInput === true, config.debug !== false,
+  return JSON.stringify([config.baseUrl, config.model, config.apiKey, config.remember, config.search, config.closeAgentTabs === true, config.visionInput === true, config.debug === true,
     normalizeTokenLimit(config.tokenLimit), { ...policy, allowedSchemes: [...policy.allowedSchemes].sort() }, splitList(parameterText), splitList(extensionText)]);
 }
 
@@ -148,7 +148,7 @@ export function SettingsForm({ embedded }: Props) {
           <p className="hint">{t('settings.executionHint')}</p>
         </section>
         <section className="card"><h2>{t('settings.debug')}</h2>
-          <label className="check"><input type="checkbox" checked={config.debug !== false} onChange={e => update({ debug: e.target.checked })}/>{t('settings.debugEnabled')}</label>
+          <label className="check"><input type="checkbox" checked={config.debug === true} onChange={e => update({ debug: e.target.checked })}/>{t('settings.debugEnabled')}</label>
           <p className="hint">{t('settings.debugHint')}</p>
           <div className="buttons">
             <button type="button" className="secondary" onClick={() => void debugLogs()}>{t('settings.debugExport')}</button>

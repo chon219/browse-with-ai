@@ -16,7 +16,7 @@ export type Outcome = 'success' | 'incomplete';
 export interface ModelSettings { baseUrl: string; model: string; remember: boolean; search: SearchEngine; webPolicy?: WebPolicy; /** Optional per-turn token limit. Missing means unrestricted. */ tokenLimit?: number; closeAgentTabs?: boolean;
   /** The model accepts images: attached and viewed images are sent to it. */
   visionInput?: boolean;
-  /** Persist internal diagnostics. Missing values default to on. */
+  /** Persist internal diagnostics. Missing values default to off. */
   debug?: boolean }
 export interface ModelConfig extends ModelSettings { apiKey: string }
 export interface Step { at: string; text: string }
