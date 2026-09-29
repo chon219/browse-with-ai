@@ -13,6 +13,8 @@ npm run build
 
 Load `dist/` as an unpacked extension from `chrome://extensions`. Rebuild and reload the extension after source changes.
 
+The icon source is `public/icons/bwai.svg`. After editing it, run `npm run icons` to regenerate the PNG sizes using Playwright Chromium.
+
 ## Checks
 
 ```sh

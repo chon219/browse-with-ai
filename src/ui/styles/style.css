@@ -56,7 +56,7 @@ header{display:flex;justify-content:space-between;align-items:center;padding:23p
 .brand{display:flex;gap:11px;align-items:center;text-decoration:none;color:var(--accent);font-size:22px;font-weight:750;letter-spacing:1px;line-height:1.2}
 .brand small{display:block;font-size:12px;letter-spacing:1.5px;font-weight:500;margin-top:4px;color:var(--text-subtle)}
 button.brand,button.brand:hover{background:none;border:0;padding:0;font-weight:750;text-align:left;border-radius:6px}
-.mark{width:40px;height:40px;background:var(--accent);color:var(--accent-contrast);display:grid;place-items:center;border-radius:13px;font:italic 34px Georgia}
+.mark{display:block;flex:none;width:40px;height:40px}
 .header-actions{display:flex;align-items:center;gap:2px}
 .header-actions .new-conversation-label{display:none}
 .conversations .new-conversation-button{width:calc(100% - 8px);margin:0 4px 4px;padding:10px 12px;gap:8px;font-weight:600;text-align:left}
@@ -98,7 +98,7 @@ button.brand,button.brand:hover{background:none;border:0;padding:0;font-weight:7
 .runner:not(.compact) .history-toggle{display:none}
 .runner.compact .brand{font-size:17px;gap:8px}
 .runner.compact .brand small{display:none}
-.runner.compact .mark{width:30px;height:30px;border-radius:9px;font-size:24px}
+.runner.compact .mark{width:30px;height:30px}
 @media(max-width:800px){.app{padding:0 18px}.runner main{grid-template-columns:minmax(0,1fr)}.card{padding:20px}}
 
 /* Side panel: one screen, the conversation fills it and the list opens over it. */
@@ -106,7 +106,7 @@ button.brand,button.brand:hover{background:none;border:0;padding:0;font-weight:7
 .panel header{flex:none;padding:10px 0;margin-bottom:10px}
 .panel .brand{font-size:17px;gap:8px}
 .panel .brand small{display:none}
-.panel .mark{width:30px;height:30px;border-radius:9px;font-size:24px}
+.panel .mark{width:30px;height:30px}
 .panel .notice{flex:none;max-height:20vh;overflow:auto;margin-bottom:10px}
 .panel main{flex:1;min-height:0;position:relative;display:flex;flex-direction:column}
 .panel article{flex:1;min-height:0;display:flex;flex-direction:column}

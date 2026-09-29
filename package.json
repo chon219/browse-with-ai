@@ -7,6 +7,7 @@
   },
   "type": "module",
   "scripts": {
+    "icons": "node scripts/icons.mjs",
     "build": "npm run check && node scripts/build.mjs",
     "test": "vitest run",
     "pretest:e2e": "npm run build",

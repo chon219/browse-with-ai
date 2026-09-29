@@ -107,7 +107,7 @@ export function SettingsForm({ embedded }: Props) {
   return <div className={embedded ? 'settings-page embedded' : 'app settings-page'} hidden={embedded && !embedded.visible} data-testid="settings">
     {embedded ? <div className="settings-header">
       <button className="quiet" onClick={embedded.onClose}>← {t('common.back')}</button><h1>{t('settings.title')}</h1>
-    </div> : <header><a className="brand" href="task.html"><span className="mark">b</span><span>BWAI<small>Browse With AI</small></span></a><h1>{t('settings.title')}</h1></header>}
+    </div> : <header><a className="brand" href="task.html"><img className="mark" src="icons/bwai.svg" width="40" height="40" alt=""/><span>BWAI<small>Browse With AI</small></span></a><h1>{t('settings.title')}</h1></header>}
     <form onSubmit={event => { event.preventDefault(); void save(false); }}>
       <fieldset disabled={!loaded || busy}>
         <section className="card"><h2>{t('settings.model')}</h2>

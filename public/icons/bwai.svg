@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="128" height="128" viewBox="0 0 128 128" fill="none" role="img" aria-labelledby="title desc">
+  <title id="title">BWAI</title>
+  <desc id="desc">A browser window and a pointer on a green rounded square.</desc>
+  <rect x="2" y="2" width="124" height="124" rx="30" fill="#23664F"/>
+  <path d="M55 99H33A12 12 0 0 1 21 87V41A12 12 0 0 1 33 29H95A12 12 0 0 1 107 41V87A12 12 0 0 1 95 99" stroke="#F8F9F5" stroke-width="8"/>
+  <path d="M24 49H104" stroke="#F8F9F5" stroke-width="6"/>
+  <path d="M33 39H39" stroke="#F8F9F5" stroke-width="5" stroke-linecap="round"/>
+  <path d="M62 59L107 85L87 90L97 107L85 114L75 97L62 109V59Z" fill="#C9EDB2" stroke="#23664F" stroke-width="6" stroke-linejoin="round"/>
+</svg>

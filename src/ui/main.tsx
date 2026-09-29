@@ -77,7 +77,7 @@ function App() {
   </button>;
   return <div className={`app ${isRunner ? 'runner' : 'panel'}${compact ? ' compact' : ''}`}>
     <header>
-      <button type="button" className="brand" title={t('app.newConversation')} onClick={newConversation}><span className="mark">b</span><span>BWAI<small>Browse With AI</small></span></button>
+      <button type="button" className="brand" title={t('app.newConversation')} onClick={newConversation}><img className="mark" src="icons/bwai.svg" width="40" height="40" alt=""/><span>BWAI<small>Browse With AI</small></span></button>
       {/* The same actions on both pages; the task page lists conversations beside the conversation, so it hides the list toggle. */}
       <div className="header-actions">
         <button ref={historyToggle} className={`quiet icon history-toggle ${historyOpen ? 'active' : ''}`} aria-label={t('app.history')} title={t('app.history')} aria-expanded={historyOpen} aria-controls="history-drawer" onClick={() => setHistoryOpen(open => !open)}>
