@@ -1,5 +1,6 @@
 node_modules/
 dist/
+/store/
 test-results/
 playwright-report/
 .env*
