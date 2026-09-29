@@ -9,7 +9,7 @@
 .token-usage{display:contents;cursor:help}
 .task-stats .stat{white-space:nowrap}
 .task-stats .stat::before{content:'·';display:inline-block;width:14px;text-align:center}
-.task-header h2{flex:1 1 180px;min-width:0;font-size:18px;margin:0;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.task-summary>h2{flex:1 1 180px;min-width:0;font-size:18px;margin:0;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 .task-toolbar{display:flex;align-items:center;flex-wrap:wrap;gap:8px}
 .task-toolbar .files{margin:0;min-width:0}
 .task-toolbar .files[open]{flex-basis:100%}
@@ -43,7 +43,7 @@
 .file-dialog{width:min(760px,calc(100% - 32px));max-height:calc(100% - 48px);background:var(--surface);color:var(--text);border:1px solid var(--border);border-radius:15px;padding:20px 24px;box-shadow:0 16px 60px #172d3433}
 .file-dialog[open]{display:flex;flex-direction:column}
 .file-dialog::backdrop{background:var(--backdrop)}
-.file-dialog h2{margin:0 0 4px;overflow-wrap:anywhere;font-family:ui-monospace,Consolas,monospace;font-size:15px}
+.file-dialog h2{flex:none;margin:0 0 4px;overflow-wrap:anywhere;font-family:ui-monospace,Consolas,monospace;font-size:15px}
 .file-dialog .hint{margin:0 0 12px}
 .file-content{flex:1;min-height:80px;overflow:auto;margin:0;padding:12px 14px;background:var(--surface-2);border:1px solid var(--border);border-radius:8px;font-size:12px;line-height:1.6;white-space:pre-wrap;overflow-wrap:anywhere;font-family:ui-monospace,Consolas,"Microsoft YaHei",monospace}
 .file-image{flex:1;min-height:80px;overflow:auto;display:grid;place-items:center;background:var(--surface-2);border:1px solid var(--border);border-radius:8px;padding:8px}
@@ -52,5 +52,5 @@
 .file-dialog .buttons{justify-content:flex-end;margin-top:16px}
 
 /* Side panel: a compact header so the conversation keeps the space. */
-.panel .task-header h2{font-size:14px;margin:0}
+.panel .task-summary>h2{font-size:14px;margin:0}
 .panel .task-note{margin-bottom:8px}

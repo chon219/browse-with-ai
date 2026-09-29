@@ -205,6 +205,21 @@ test('PDF, Word and Excel attachments are read as text in the sandbox, and code 
     const dialog = h.page.getByRole('dialog');
     await files.getByRole('button', { name: '预览 汇总.xlsx', exact: true }).click();
     await expect(dialog.locator('.file-content')).toHaveText('## Sheet: 汇总\n合计\n22.5');
+    // A task heading's flex basis must not inflate the filename inside its preview dialog.
+    expect((await dialog.getByRole('heading').boundingBox())!.height).toBeLessThan(50);
+    await dialog.screenshot({ path: `${h.dir}/workspace-preview.png` });
+    const panel = await h.context.newPage();
+    await panel.setViewportSize({ width: 380, height: 760 });
+    await panel.goto(`chrome-extension://${h.id}/sidepanel.html`);
+    await panel.getByRole('button', { name: '对话记录', exact: true }).click();
+    await panel.locator('.history-item').first().click();
+    await panel.getByTestId('workspace-files').locator('summary').click();
+    await panel.getByRole('button', { name: '预览 汇总.xlsx', exact: true }).click();
+    const panelDialog = panel.getByRole('dialog');
+    await expect(panelDialog.locator('.file-content')).toContainText('22.5');
+    expect((await panelDialog.getByRole('heading').boundingBox())!.height).toBeLessThan(50);
+    await panelDialog.screenshot({ path: `${h.dir}/workspace-preview-panel.png` });
+    await panel.close();
     await h.page.keyboard.press('Escape');
     await files.getByRole('button', { name: '预览 uploads/说明.docx', exact: true }).click();
     await expect(dialog.locator('.file-content')).toContainText('| 包装 | 小王 |');
