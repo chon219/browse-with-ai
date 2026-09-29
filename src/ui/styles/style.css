@@ -59,7 +59,7 @@ button.brand,button.brand:hover{background:none;border:0;padding:0;font-weight:7
 .mark{display:block;flex:none;width:40px;height:40px}
 .header-actions{display:flex;align-items:center;gap:2px}
 .header-actions .new-conversation-label{display:none}
-.conversations .new-conversation-button{width:calc(100% - 8px);margin:0 4px 4px;padding:10px 12px;gap:8px;font-weight:600;text-align:left}
+.conversations .new-conversation-button{flex:none;width:calc(100% - 8px);margin:0 4px 4px;padding:10px 12px;gap:8px;font-weight:600;text-align:left}
 .card{background:var(--surface);border:1px solid var(--border);border-radius:15px;padding:24px;margin-bottom:20px;box-shadow:var(--shadow)}
 .notice{display:flex;align-items:center;justify-content:space-between;gap:10px;background:var(--accent-soft);color:var(--accent-soft-text);border:1px solid var(--border);padding:10px 15px;border-radius:9px;margin-bottom:18px}
 .section-title{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-bottom:16px}
@@ -94,7 +94,8 @@ button.brand,button.brand:hover{background:none;border:0;padding:0;font-weight:7
 .runner>.notice{flex:none;max-height:20vh;overflow:auto}
 .runner main{flex:1;min-height:0;position:relative;display:grid;grid-template-columns:260px minmax(0,1fr);gap:24px}
 .runner article{min-width:0;min-height:0;display:flex;flex-direction:column}
-.runner .conversations{min-height:0;overflow:auto}
+.runner:not(.compact) .conversations{display:flex;flex-direction:column;min-height:0;overflow:hidden}
+.runner:not(.compact) .history{flex:1;min-height:0;overflow:auto;overscroll-behavior:contain}
 .runner:not(.compact) .history-toggle{display:none}
 .runner.compact .brand{font-size:17px;gap:8px}
 .runner.compact .brand small{display:none}
